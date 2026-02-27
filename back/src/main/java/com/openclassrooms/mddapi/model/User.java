@@ -2,11 +2,15 @@ package com.openclassrooms.mddapi.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+
+/**
+ * @author johanna
+ * @version 1.0.0
+ */
 
 @Getter
 @Setter
@@ -26,7 +30,6 @@ public class User {
     private String email;
 
     @Column (nullable = false)
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,}$")
     private String password;
 
     @OneToMany(mappedBy = "user")
