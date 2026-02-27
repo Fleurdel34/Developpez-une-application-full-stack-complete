@@ -1,0 +1,29 @@
+package com.openclassrooms.mddapi.exception;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.List;
+
+/**
+ * Create class with @ControllerAdvice
+ * Execute exception processing
+ * Use @ExceptionHandler
+ */
+
+@ControllerAdvice
+public class ExceptionController extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<Object> handleBadRequestException(BadRequestException exception){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessageDetails(List.of(exception.getMessageException(), exception.getMessage()));
+        return ResponseEntity
+                .status(exception.getCode())
+                .body(errorResponse);
+    }
+
+
+}
