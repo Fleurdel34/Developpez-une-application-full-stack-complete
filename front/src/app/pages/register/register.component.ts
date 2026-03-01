@@ -37,8 +37,7 @@ export class RegisterComponent implements OnInit {
       .subscribe({
           next: () => this.router.navigate(['/login']),
           error: (error) => console.error("Error during registration:", error)
-        });
-
+      });
     }
   }
 }

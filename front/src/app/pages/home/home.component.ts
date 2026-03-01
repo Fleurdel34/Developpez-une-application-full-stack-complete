@@ -15,7 +15,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  start() {
+  register() {
     this.router.navigateByUrl('/register');
+  }
+
+  login() {
+    this.router.navigateByUrl('/login');
   }
 }
