@@ -6,6 +6,7 @@ export default {
     moduleFileExtensions: ['ts', 'html', 'js', 'json'],
     transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
     testPathIgnorePatterns: ['/node_modules/', '/dist/', '/src/test.ts'],
+    moduleNameMapper: { '^src/(.*)$': '<rootDir>/src/$1', '^src/app/(.*)$': '<rootDir>/src/app/$1', '^src/environments/(.*)$': '<rootDir>/src/environments/$1' }
 };
 
 
