@@ -56,8 +56,4 @@ public class RegisterControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-
-
-
-
 }

@@ -23,6 +23,5 @@ public class RegisterController {
     public ResponseEntity<?> registerUser(@RequestBody User user){
         registerService.createUser(user);
         return ResponseEntity.ok("registration successful!");
-
     }
 }
