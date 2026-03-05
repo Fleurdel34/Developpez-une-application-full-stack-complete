@@ -25,5 +25,23 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
                 .body(errorResponse);
     }
 
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<Object> handleBadRequestException(NotFoundException exception){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessageDetails(List.of(exception.getMessageException(), exception.getMessage()));
+        return ResponseEntity
+                .status(exception.getCode())
+                .body(errorResponse);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<Object> handleBadRequestException(UnauthorizedException exception){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessageDetails(List.of(exception.getMessageException(), exception.getMessage()));
+        return ResponseEntity
+                .status(exception.getCode())
+                .body(errorResponse);
+    }
+
 
 }
