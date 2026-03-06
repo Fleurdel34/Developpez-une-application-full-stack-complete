@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             user = userRepository.findByUsername(login);
         }
 
-        return (UserDetails) user.orElseThrow(() -> new UnauthorizedException("error"));
+        return  user.orElseThrow(() -> new UnauthorizedException("error"));
     }
 
     @SneakyThrows

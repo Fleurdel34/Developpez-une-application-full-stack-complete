@@ -2,7 +2,6 @@ package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.UpdateUserDTO;
 import com.openclassrooms.mddapi.dto.UserDTO;
-import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.service.Impl.UserServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
