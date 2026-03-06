@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: "application-secret.yml"
   datasource:
     url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MARIADB
     driverClassName: org.h2.Driver
@@ -12,3 +14,6 @@ spring:
   h2:
     console:
       enabled: true
+
+jwt:
+  secret: ${SECRET_KEY}
