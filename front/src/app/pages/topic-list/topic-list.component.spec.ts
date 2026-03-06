@@ -39,7 +39,7 @@ describe('TopicListComponent', () => {
   };
 
   const mockUserService = {
-    getUser: jest.fn().mockReturnValue({ id: 1 })
+    getUserAuth: jest.fn().mockReturnValue(of({ id: 1 }))
   };
 
   beforeEach(async () => {

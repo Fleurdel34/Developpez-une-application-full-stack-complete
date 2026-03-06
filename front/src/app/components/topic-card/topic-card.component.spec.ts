@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of} from 'rxjs';
 import { TopicCardComponent } from './topic-card.component';
-import { SuscriptionService } from 'src/app/core/services/suscription.service';
+import { SubscriptionService } from 'src/app/core/services/subscription.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TopicCardComponent', () => {
   let component: TopicCardComponent;
   let fixture: ComponentFixture<TopicCardComponent>;
-  let suscriptionService: SuscriptionService;
+  let subscriptionService: SubscriptionService;
 
-  const mockSuscriptionService = {
+  const mockSubscriptionService = {
       subscribe: jest.fn().mockReturnValue(of({})),
       unsubscribe: jest.fn().mockReturnValue(of({}))
   };
@@ -18,7 +18,7 @@ describe('TopicCardComponent', () => {
     id: 1,
     title: 'Test Topic',
     content: 'This is a test topic',
-    suscription: {
+    subscription: {
       user_id: 1,
       created_at: new Date()
     }
@@ -29,13 +29,13 @@ describe('TopicCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TopicCardComponent, HttpClientTestingModule],
-      providers: [{ provide: SuscriptionService, useValue: mockSuscriptionService }]
+      providers: [{ provide: SubscriptionService, useValue: mockSubscriptionService }]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(TopicCardComponent);
     component = fixture.componentInstance;
-    suscriptionService = TestBed.inject(SuscriptionService);
+    subscriptionService = TestBed.inject(SubscriptionService);
     component.topic = mockTopic;
     component.userId = mockUserId;
     fixture.detectChanges();
@@ -50,7 +50,7 @@ describe('TopicCardComponent', () => {
     component.topic = mockTopic;
     component.userId = mockUserId;
     component.subscribe();
-    expect(mockSuscriptionService.subscribe).toHaveBeenCalledWith(component.userId, component.topic.id);
+    expect(mockSubscriptionService.subscribe).toHaveBeenCalledWith(component.userId, component.topic.id);
     expect(component.subscribed).toBe("Déjà abonné");
   });
 
@@ -59,7 +59,7 @@ describe('TopicCardComponent', () => {
     component.topic = mockTopic;
     component.userId = mockUserId;
     component.subscribe();
-    expect(mockSuscriptionService.unsubscribe).toHaveBeenCalledWith(component.userId, component.topic.id);
+    expect(mockSubscriptionService.unsubscribe).toHaveBeenCalledWith(component.userId, component.topic.id);
     expect(component.subscribed).toBe("S'abonner");
   });
 });

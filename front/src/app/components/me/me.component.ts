@@ -43,7 +43,7 @@ export class MeComponent {
       .subscribe(data => {
         this.topics = data;
         if(this.topics.length > 0) {
-          const suscribedTopics = this.topics.filter(topic => topic.suscription.user_id === this.user.id);
+          const suscribedTopics = this.topics.filter(topic => topic.subscription.user_id === this.user.id);
           this.topics = suscribedTopics;
         }
       });

@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
-export class SuscriptionService {
+export class SubscriptionService {
 
   private pathApi = environment.apiUrl;
 

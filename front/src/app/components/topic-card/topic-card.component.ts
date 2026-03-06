@@ -1,6 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { Topic } from 'src/app/core/models/topic.interface';
-import { SuscriptionService } from 'src/app/core/services/suscription.service';
+import { SubscriptionService } from 'src/app/core/services/subscription.service';
 
 @Component({
   selector: 'app-topic-card',
@@ -14,14 +14,14 @@ export class TopicCardComponent {
 @Input() userId!: number;
 subscribed: String = "S'abonner";
 
-private suscriptionService = inject(SuscriptionService)
+private subscriptionService = inject(SubscriptionService)
 
   subscribe() {
     if(this.subscribed === "S'abonner") {
-      this.suscriptionService.subscribe(this.userId, this.topic.id).subscribe();
+      this.subscriptionService.subscribe(this.userId, this.topic.id).subscribe();
       this.subscribed = "Déjà abonné";
     } else {
-      this.suscriptionService.unsubscribe(this.userId, this.topic.id).subscribe();
+      this.subscriptionService.unsubscribe(this.userId, this.topic.id).subscribe();
       this.subscribed = "S'abonner";
     }
   }

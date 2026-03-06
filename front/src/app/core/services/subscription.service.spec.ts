@@ -1,19 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SuscriptionService } from './suscription.service';
+import { SubscriptionService } from './subscription.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment.prod';
 
 describe('SuscriptionService', () => {
-  let service: SuscriptionService;
+  let service: SubscriptionService;
   let http: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ SuscriptionService]
+      providers: [ SubscriptionService]
     });
-    service = TestBed.inject(SuscriptionService);
+    service = TestBed.inject(SubscriptionService);
     http = TestBed.inject(HttpTestingController);
   });
 
