@@ -1,1 +1,20 @@
-<p>dashboard works!</p>
+<nav>
+    <img src="/assets/logo_p6.png" alt="" />
+    <ul>
+        <li><a (click)="logout()">Se déconnecter</a></li>
+        <li><a (click)="onArticlesClick()">Articles</a></li>
+        <li><a (click)="onThemesClick()">Thèmes</a></li>
+        <li>
+            <a (click)="onMeClick()">
+                <svg width="32" height="32" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="#555" stroke-width="2" fill="none" />
+                <circle cx="12" cy="10" r="3" fill="#555" />
+                <path d="M6 18c1.5-3 10.5-3 12 0" fill="#555" />
+                </svg>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+

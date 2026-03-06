@@ -1,20 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { User } from '../models/user.interface';
+import { Token } from '../models/token.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  
 
-  /**to do next all features */
+  private pathApi = environment.apiUrl;
 
-  private user!: User;
+  private http = inject(HttpClient);
 
-  setUser(user: User) {
-    this.user = user;
+  public login (formValue:FormGroup): Observable<Token> {
+    return this.http.post<Token>(`${this.pathApi}/login`, formValue);
   }
 
-  getUser(): User {
-    return this.user;
+  public getUserAuth(): Observable<User> {
+    return this.http.get<User>(`${this.pathApi}/user/me`);
+  }
+
+  update (formValue:FormGroup): Observable<void> {
+    return this.http.put<void>(`${this.pathApi}/user/me`, formValue);
   }
 }
