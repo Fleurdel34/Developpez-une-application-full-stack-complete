@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -31,12 +33,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private UserRepository userRepository;
     private BCryptPasswordEncoder passwordEncoder;
 
+    @SneakyThrows
     public UserDTO getUserAuth(){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User user =userRepository.findByEmail(email).orElseThrow(()-> new UnauthorizedException("error"));
 
         return new UserDTO(
                 user.getId(),
-                user.getUsername(),
+                user.getUserName(),
                 user.getEmail()
         );
     }
@@ -54,19 +59,32 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             user = userRepository.findByUsername(login);
         }
 
-        return  user.orElseThrow(() -> new UnauthorizedException("error"));
+        User user1 =user.orElseThrow(() -> new UnauthorizedException("error"));
+        return org.springframework.security.core.userdetails.User
+                .withUsername(user1.getEmail())
+                .password(user1.getPassword())
+                .authorities(List.of())
+                .build();
     }
 
     @SneakyThrows
     public User updateUser(UpdateUserDTO updateUserDTO){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(userRepository.existsByUsername(updateUserDTO.username())){
-            throw new BadRequestException("username exist");
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User user =userRepository.findByEmail(email).orElseThrow(()-> new UnauthorizedException("error"));;
+
+        if(!Objects.equals(user.getUserName(), updateUserDTO.username())) {
+            if (userRepository.existsByUsername(updateUserDTO.username())) {
+                throw new BadRequestException("username exist");
+            }
         }
         user.setUsername(updateUserDTO.username());
 
-        if(userRepository.existsByEmail(updateUserDTO.email())){
-            throw new BadRequestException("email exist");
+        if(!Objects.equals(user.getEmail(), updateUserDTO.email())) {
+            if (userRepository.existsByEmail(updateUserDTO.email())) {
+                throw new BadRequestException("email exist");
+            }
         }
         user.setEmail(updateUserDTO.email());
 

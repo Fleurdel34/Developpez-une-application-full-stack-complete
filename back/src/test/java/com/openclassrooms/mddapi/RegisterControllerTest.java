@@ -24,9 +24,9 @@ public class RegisterControllerTest {
 
         String requestBody= """
                {
-               "username":"julie",
-               "email": "julie@gmail.com",
-               "password": "Julie1234@"
+               "username":"hawa",
+               "email": "hawa@gmail.com",
+               "password": "Hawa1234@"
                }
                """;
 

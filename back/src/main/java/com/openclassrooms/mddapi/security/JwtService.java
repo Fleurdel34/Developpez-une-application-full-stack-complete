@@ -1,6 +1,8 @@
 package com.openclassrooms.mddapi.security;
 
+import com.openclassrooms.mddapi.exception.NotFoundException;
 import com.openclassrooms.mddapi.model.User;
+import com.openclassrooms.mddapi.repository.UserRepository;
 import com.openclassrooms.mddapi.service.Impl.UserServiceImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -9,6 +11,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -31,14 +34,20 @@ public class JwtService {
 
     private  final UserServiceImpl userService;
 
-    public JwtService(UserServiceImpl userService) {
+    private  final UserRepository userRepository;
+
+    public JwtService(UserServiceImpl userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
 
     @SneakyThrows
     public Map<String, String> generate(String login){
-        User user = (User) this.userService.loadUserByUsername(login);
+        UserDetails userDetails =  this.userService.loadUserByUsername(login);
+        String email = userDetails.getUsername();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("not found"));
         return this.generateJwt(user);
     }
 
@@ -54,10 +63,10 @@ public class JwtService {
         );
 
         final String bearer = Jwts.builder()
+                .setClaims(claims)
                 .setIssuedAt(new Date(currentTime))
                 .setExpiration(new Date(expirationTime))
-                .setSubject(user.getUsername())
-                .setClaims(claims)
+                .setSubject(user.getEmail())
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();
         return Map.of("token", bearer);

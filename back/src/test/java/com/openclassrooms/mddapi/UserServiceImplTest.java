@@ -16,6 +16,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 import java.util.Collections;
@@ -31,6 +32,9 @@ public class UserServiceImplTest {
 
     @Mock
     private UserRepository userRepository;
+
+    @Mock
+    private BCryptPasswordEncoder passwordEncoder;
 
     @InjectMocks
     private UserServiceImpl userService;
@@ -49,8 +53,7 @@ public class UserServiceImplTest {
 
         Mockito.verify(userRepository).findByUsername("josette");
 
-        User user =(User) result1;
-        assertEquals("josette", user.getUserName());
+        assertEquals("josette@gmail.com", result1.getUsername());
 
     }
 
@@ -68,8 +71,8 @@ public class UserServiceImplTest {
 
         Mockito.verify(userRepository).findByEmail("josephine@gmail.com");
 
-        User user =(User) result2;
-        assertEquals("josephine@gmail.com", user.getEmail());
+
+        assertEquals("josephine@gmail.com", result2.getUsername());
     }
 
     @Test
@@ -101,7 +104,7 @@ public class UserServiceImplTest {
         userMock.setPassword("test1234");
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
-                userMock,
+                userMock.getEmail(),
                 null,
                 Collections.emptyList()
         );
@@ -113,8 +116,16 @@ public class UserServiceImplTest {
                 "test1234"
         );
 
+        Mockito.when(userRepository.findByEmail("josette@gmail.com"))
+                .thenReturn(Optional.of(userMock));
+
         Mockito.when(userRepository.existsByUsername("jojo"))
                 .thenReturn(false);
+
+
+
+        Mockito.when(passwordEncoder.encode("test1234"))
+                .thenReturn("encodedPassword");
 
         Mockito.when(userRepository.save(userMock))
                 .thenReturn(userMock);
@@ -123,7 +134,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void updateUserExistTest(){
+    public void updateUserUsernameExistTest(){
         User userMock1 = new User();
         userMock1.setId(2L);
         userMock1.setUsername("alain");
@@ -131,19 +142,21 @@ public class UserServiceImplTest {
         userMock1.setPassword("test1234");
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
-                userMock1,
+                userMock1.getEmail(),
                 null,
                 Collections.emptyList()
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         UpdateUserDTO updateUserDTO = new UpdateUserDTO(
-                "alain",
+                "jean",
                 "alain@gmail.com",
                 "test1234"
         );
+        Mockito.when(userRepository.findByEmail("alain@gmail.com"))
+                .thenReturn(Optional.of(userMock1));
 
-        Mockito.when(userRepository.existsByUsername("alain"))
+        Mockito.lenient().when(userRepository.existsByUsername("jean"))
                 .thenReturn(true);
 
         BadRequestException exception = assertThrows(BadRequestException.class, () -> {
@@ -151,6 +164,42 @@ public class UserServiceImplTest {
         });
 
         assertThat(exception.getMessage()).isEqualTo("username exist");
+
+        Mockito.verify(userRepository, Mockito.never())
+                .save(Mockito.any());
+    }
+
+    @Test
+    public void updateUserEmailExistTest(){
+        User userMock1 = new User();
+        userMock1.setId(2L);
+        userMock1.setUsername("alain");
+        userMock1.setEmail("alain@gmail.com");
+        userMock1.setPassword("test1234");
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                userMock1.getEmail(),
+                null,
+                Collections.emptyList()
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        UpdateUserDTO updateUserDTO = new UpdateUserDTO(
+                "jean",
+                "jean@gmail.com",
+                "test1234"
+        );
+        Mockito.when(userRepository.findByEmail("alain@gmail.com"))
+                .thenReturn(Optional.of(userMock1));
+
+        Mockito.lenient().when(userRepository.existsByEmail("jean@gmail.com"))
+                .thenReturn(true);
+
+        BadRequestException exception = assertThrows(BadRequestException.class, () -> {
+            this.userService.updateUser(updateUserDTO);
+        });
+
+        assertThat(exception.getMessage()).isEqualTo("email exist");
 
         Mockito.verify(userRepository, Mockito.never())
                 .save(Mockito.any());

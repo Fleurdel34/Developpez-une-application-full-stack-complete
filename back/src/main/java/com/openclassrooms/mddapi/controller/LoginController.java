@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.AuthenticationDTO;
 import com.openclassrooms.mddapi.exception.BadRequestException;
+import com.openclassrooms.mddapi.exception.UnauthorizedException;
 import com.openclassrooms.mddapi.security.JwtService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -20,8 +21,9 @@ import java.util.Map;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping({"/api/login"})
+@RequestMapping({"/api"})
 public class LoginController {
+
 
     private final AuthenticationManager authenticationManager;
 
@@ -40,10 +42,12 @@ public class LoginController {
                         (authenticationDTO.login(), authenticationDTO.password()));
 
         if(!authenticate.isAuthenticated()){
-            return null;
+            throw new UnauthorizedException("Authentication failed");
         }
 
-        Map<String, String> token = this.jwtService.generate(authenticationDTO.login());
+        String email = authenticate.getName();
+
+        Map<String, String> token = this.jwtService.generate(email);
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
