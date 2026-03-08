@@ -1,8 +1,8 @@
 <div>
-    <h2>{{ article.title }}</h2>
+    <h2>{{ article?.title }}</h2>
     <div>
-        <p>{{ article.created_at | date:'dd/MM/yyyy HH:mm' }}</p>
-        <p>{{ article.username }}</p>
+        <p>{{ article?.created_at | date:'dd/MM/yyyy HH:mm' }}</p>
+        <p>{{ article?.username }}</p>
     </div>
-    <p>{{ article.content }}</p>
+    <p>{{ article?.content }}</p>
 </div>
