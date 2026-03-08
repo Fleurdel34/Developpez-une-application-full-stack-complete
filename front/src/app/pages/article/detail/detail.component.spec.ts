@@ -83,7 +83,7 @@ it('should comment form successfully', () => {
   });  
 
   it('should go back successfully', () => {
-    component. back();
+    component.back();
     expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/articles');
   });
 
