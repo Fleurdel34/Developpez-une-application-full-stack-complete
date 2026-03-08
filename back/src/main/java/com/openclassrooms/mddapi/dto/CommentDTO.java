@@ -4,14 +4,14 @@ import java.util.Date;
 
 /**
  * Create Record to recover of CommentDTO
- * @param id, content, created_at, userId, articleId
+ * @param id, content, created_at, username, articleId
  */
 
 public record CommentDTO(
        Long id,
        String content,
        Date created_at,
-       Long userId,
+       String username,
        Long articleId
 ) {
 }

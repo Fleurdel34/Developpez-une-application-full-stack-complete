@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Create Record to recover of ArticleDTO
- * @param id,topic,title,content, created_at,userId and list comments
+ * @param id,topic,title,content, created_at,username and list comments
  */
 
 public record ArticleDTO(
@@ -15,7 +15,7 @@ public record ArticleDTO(
         String title,
         String content,
         Date created_at,
-        Long userId,
+        String username,
         List<CommentDTO> comments
 ) {
 }

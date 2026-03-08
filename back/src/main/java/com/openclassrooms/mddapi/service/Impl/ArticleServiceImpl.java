@@ -52,13 +52,13 @@ public class ArticleServiceImpl implements ArticleService {
                         article.getTitle(),
                         article.getContent(),
                         article.getCreated_at(),
-                        article.getUser().getId(),
+                        article.getUser().getUserName(),
                         article.getComments().stream()
                                 .map(comment -> new CommentDTO(
                                         comment.getId(),
                                         comment.getContent(),
                                         comment.getCreated_at(),
-                                        comment.getUser().getId(),
+                                        comment.getUser().getUserName(),
                                         comment.getArticle().getId()
                                 )).toList()
                 )).toList();
@@ -75,13 +75,13 @@ public class ArticleServiceImpl implements ArticleService {
                         article.getTitle(),
                         article.getContent(),
                         article.getCreated_at(),
-                        article.getUser().getId(),
+                        article.getUser().getUserName(),
                         article.getComments().stream()
                                 .map(comment -> new CommentDTO(
                                         comment.getId(),
                                         comment.getContent(),
                                         comment.getCreated_at(),
-                                        comment.getUser().getId(),
+                                        comment.getUser().getUserName(),
                                         comment.getArticle().getId()
                                 )).toList()
                 )).orElse(null);
