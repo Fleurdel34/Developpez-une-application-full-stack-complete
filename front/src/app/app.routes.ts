@@ -16,9 +16,21 @@ export const routes: Routes = [
         import('./components/me/me.component')
         .then(m => m.MeComponent)
       },
+      {path:'articles', loadComponent: () => 
+        import('./pages/article/list/list.component')
+        .then(m => m.ListComponent)
+      },
+      {path:'articles/detail/:id', loadComponent: () => 
+        import('./pages/article/detail/detail.component')
+        .then(m => m.DetailComponent)
+      },
+      {path:'articles/form-article', loadComponent: () => 
+        import('./pages/article/form-article/form-article.component')
+        .then(m => m.FormArticleComponent)
+      },
       {
       path: '',
-      redirectTo: 'article',
+      redirectTo: 'articles',
       pathMatch: 'full'
     }
     ]
