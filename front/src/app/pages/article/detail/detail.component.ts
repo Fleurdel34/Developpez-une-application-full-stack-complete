@@ -35,8 +35,6 @@ export class DetailComponent implements OnInit{
       error: (error: Error) => console.error("Error fetching article:", error)
     });
 
-
-
     this.commentForm = this.formBuilder.group({
       content: [null, [Validators.required]]
     });

@@ -15,7 +15,6 @@ const mockArticle = {
         username: 'testuser',
         articleId: 1
     }
-
   };
 
 describe('ArticleCardComponent', () => {
