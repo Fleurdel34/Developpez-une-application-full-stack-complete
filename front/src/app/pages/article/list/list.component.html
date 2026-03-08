@@ -1,0 +1,9 @@
+<div>
+    <button (click)="createArticle()">Créer un article</button>
+    <button (click)="sortArticle()">Trier par</button>
+</div>
+<div>
+    @for(article of article$ | async; track article.id){
+        <app-article-card [article]="article" (click)="detailArticle(article.id)"></app-article-card>
+    }
+</div>

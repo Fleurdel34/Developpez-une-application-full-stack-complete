@@ -1,0 +1,15 @@
+<h1>Créer un nouvel article</h1>
+<form [formGroup]="articleForm" >
+    <div>
+        <input type="text" id="topic" formControlName="topic" placeholder="Sélectionner un thème">
+    </div>
+    <div>
+        <input type="text" id="title" formControlName="title" placeholder="Titre de l'article">
+    </div>
+    <div>
+        <textarea id="content" formControlName="content" placeholder="Contenu de l'article"></textarea>
+    </div>
+    <div>
+        <button type="submit" (click)="onSubmit()" [disabled]="articleForm.invalid">Créer</button>
+    </div>
+</form>

@@ -1,0 +1,27 @@
+<div>
+    <button (click)="back()"></button>
+    <h1>{{ article.title }}</h1>
+</div>    
+<div>
+    <p>{{ article.created_at | date }}</p>
+    <p>{{ article.username }}</p>
+    <p>{{article.topic}}</p>
+</div>
+<div>
+    <p>{{ article.content }}</p>
+</div>
+<div>
+    <h2>Commentaires</h2>
+</div>
+<div>
+    <p>{{ article.comments.username }}</p>
+    <p>{{ article.comments.content }}</p>
+</div>
+<form [formGroup]="commentForm">
+    <div>
+        <textarea id="content" formControlName="content" placeholder="Ecrivez un commentaire"></textarea>
+    </div>
+    <div>
+        <button type="submit" (click)="onSubmit()"></button>
+    </div>
+</form>
