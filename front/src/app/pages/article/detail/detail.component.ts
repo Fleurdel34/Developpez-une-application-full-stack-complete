@@ -28,7 +28,7 @@ export class DetailComponent implements OnInit{
   ngOnInit(): void {
     const id= this.route.snapshot.paramMap.get('id');
     this.idArticle = parseInt(id!);
-    this.articleService.getById(this.idArticle)
+    this.articleService.getArticleById(this.idArticle)
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe({
       next: (article: Article) => this.article = article,

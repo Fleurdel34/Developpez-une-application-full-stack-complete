@@ -15,8 +15,8 @@ import { Router } from '@angular/router';
 export class ListComponent {
   private router = inject(Router);
   private articleService = inject(ArticleService);
-
   public sortAsc = true;
+
   public article$: Observable<Article[]> = this.articleService.getAll().pipe(
     map(articles =>  this.sortArticles(articles))
   );
@@ -30,11 +30,18 @@ export class ListComponent {
   }
 
   public sortArticles(articles: Article[]): Article[] {
-    return articles.sort((a, b) => {
+    return [...articles].sort((a, b) => {
       const dateAsc = new Date(a.created_at).getTime();
       const dateDesc = new Date(b.created_at).getTime();
       return this.sortAsc ? dateAsc - dateDesc : dateDesc - dateAsc;
     });
+  }
+
+  public toggleSort(): void {
+    this.sortAsc = !this.sortAsc;
+    this.article$ = this.article$.pipe(
+      map(articles => this.sortArticles(articles))
+    );
   }
 
 }

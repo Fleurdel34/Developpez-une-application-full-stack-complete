@@ -29,7 +29,7 @@ describe('DetailComponent', () => {
   };
 
   const mockArticleService = {
-    getById: jest.fn().mockReturnValue(of(mockArticle))
+    getArticleById: jest.fn().mockReturnValue(of(mockArticle))
   };
 
   const mockCommentService = {
@@ -87,10 +87,10 @@ it('should comment form successfully', () => {
     expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/articles');
   });
 
-  it('should call getById with route id', () => {
+  it('should call getArticleById with route id', () => {
     fixture.detectChanges(); 
     expect(component.idArticle).toBe(123);
-    expect(mockArticleService.getById).toHaveBeenCalledWith(123);
+    expect(mockArticleService.getArticleById).toHaveBeenCalledWith(123);
     expect(component.article).toEqual(mockArticle);
   });
 
