@@ -28,14 +28,12 @@ export class DetailComponent implements OnInit{
   ngOnInit(): void {
     const id= this.route.snapshot.paramMap.get('id');
     this.idArticle = parseInt(id!);
-    this.articleService.getById(this.idArticle)
+    this.articleService.getArticleById(this.idArticle)
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe({
       next: (article: Article) => this.article = article,
       error: (error: Error) => console.error("Error fetching article:", error)
     });
-
-
 
     this.commentForm = this.formBuilder.group({
       content: [null, [Validators.required]]

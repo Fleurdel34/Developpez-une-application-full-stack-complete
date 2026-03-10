@@ -17,7 +17,7 @@ export class ArticleService {
     return this.http.post<void>(`${this.pathApi}/articles`, formValue);
   }
 
-  public getById(id:number): Observable<Article> {
+  public getArticleById(id:number): Observable<Article> {
     return this.http.get<Article>(`${this.pathApi}/articles/${id}`);
   }
 
