@@ -16,7 +16,7 @@ public class CommentController {
     private final CommentServiceImpl commentService;
 
     @PostMapping("/{articleId}/comments")
-    public ResponseEntity<Void> createArticle(
+    public ResponseEntity<Void> createComment(
             @PathVariable Long articleId,
             @RequestBody Comment comment,
             Authentication authentication

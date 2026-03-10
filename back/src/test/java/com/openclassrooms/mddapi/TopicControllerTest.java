@@ -50,6 +50,5 @@ public class TopicControllerTest {
                 .andExpect(jsonPath("$.topics[0].title").value("1er topic"))
                 .andExpect(jsonPath("$.topics[1].title").value("Second topic"));
 
-
     }
 }
