@@ -1,0 +1,25 @@
+.buttonsArticles{
+    display:flex;
+    justify-content: space-between;
+    margin-left:53px;
+    margin-right:53px;
+    margin-top:30px;
+}
+
+#buttonCreated{
+    width: 153px;
+    height: 40px;
+    background-color: #7763C5;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+#toggle{
+    background-color: #fff;
+    border: none;
+    font-size:16px;
+    font-weight: 700;
+}
+
