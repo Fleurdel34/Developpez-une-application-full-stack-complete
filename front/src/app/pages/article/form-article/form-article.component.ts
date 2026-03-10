@@ -35,10 +35,8 @@ export class FormArticleComponent implements OnInit {
       if (this.articleForm.valid) {
         this.articleService.createArticle(formValue)
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-            next: () => this.router.navigate(['/articles']),
-            error: (error: Error) => console.error("Error creating article:", error)
-        });
+        .subscribe();
+        this.router.navigate(['/article'])
       }
     }
 

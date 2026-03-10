@@ -46,15 +46,13 @@ export class DetailComponent implements OnInit{
       if (this.commentForm.valid) {
         this.commentService.createComment(formValue, id)
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-            next: () => this.router.navigate(['/articles']),
-            error: (error: Error) => console.error("Error creating comment:", error)
-        });
-      }
+        .subscribe();
+        this.router.navigate(['/article']);
+      };
   }
 
   back() {
-    this.router.navigateByUrl('/articles');
+    this.router.navigateByUrl('/dashboard/article');
   }
 
 }

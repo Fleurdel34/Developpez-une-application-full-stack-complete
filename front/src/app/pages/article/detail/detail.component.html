@@ -13,15 +13,18 @@
 <div>
     <h2>Commentaires</h2>
 </div>
+@for (comment of article.comments; track comment.id) {
 <div>
-    <p>{{ article.comments.username }}</p>
-    <p>{{ article.comments.content }}</p>
+    <p>{{ comment.username }}</p>
+    <p>{{ comment.content }}</p>
 </div>
-<form [formGroup]="commentForm">
+}
+
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
     <div>
         <textarea id="content" formControlName="content" placeholder="Ecrivez un commentaire"></textarea>
     </div>
     <div>
-        <button type="submit" (click)="onSubmit()"></button>
+        <button type="submit"></button>
     </div>
 </form>

@@ -11,28 +11,28 @@ export const routes: Routes = [
     import('./pages/dashboard/dashboard.component')
     .then(m => m.DashboardComponent),
     children: [ 
-      {path:'topic', loadComponent: () => 
+      {path:'theme', loadComponent: () => 
         import('./pages/topic-list/topic-list.component')
         .then(m => m.TopicListComponent)},
       {path:'me', loadComponent: () => 
         import('./components/me/me.component')
         .then(m => m.MeComponent)
       },
-      {path:'articles', loadComponent: () => 
+      {path:'article', loadComponent: () => 
         import('./pages/article/list/list.component')
         .then(m => m.ListComponent)
       },
-      {path:'articles/detail/:id', loadComponent: () => 
+      {path:'article/detail/:id', loadComponent: () => 
         import('./pages/article/detail/detail.component')
         .then(m => m.DetailComponent)
       },
-      {path:'articles/form-article', loadComponent: () => 
+      {path:'article/form-article', loadComponent: () => 
         import('./pages/article/form-article/form-article.component')
         .then(m => m.FormArticleComponent)
       },
       {
       path: '',
-      redirectTo: 'articles',
+      redirectTo: 'article',
       pathMatch: 'full'
     }
     ]

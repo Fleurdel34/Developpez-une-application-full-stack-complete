@@ -5,18 +5,16 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 import { of} from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let registerService: RegisterService;
+    let router:Router;
 
   const mockRegisterService = {
     register: jest.fn().mockReturnValue(of({}))
-  };
-
-  const mockRouter = {  
-    navigate: jest.fn(),
   };
 
   const mockUser={
@@ -27,15 +25,16 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegisterComponent, HttpClientTestingModule, ReactiveFormsModule],
-      providers: [ { provide: RegisterService, useValue: mockRegisterService },
-      { provide: Router, useValue: mockRouter }]
+      imports: [RegisterComponent, HttpClientTestingModule, RouterTestingModule, ReactiveFormsModule],
+      providers: [ { provide: RegisterService, useValue: mockRegisterService }]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(RegisterComponent);
     registerService = TestBed.inject(RegisterService);
     component = fixture.componentInstance;
+    router= TestBed.inject(Router);
+    jest.spyOn(router, 'navigate')
     fixture.detectChanges();
   });
 
@@ -47,7 +46,7 @@ describe('RegisterComponent', () => {
     component.registerForm.patchValue(mockUser)
     component.onSubmit();
     expect(mockRegisterService.register).toHaveBeenCalledWith(mockUser);
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/login']);
+    expect(router.navigate).toHaveBeenCalledWith(['/login']);
   });
   
   it('should register not successfully form invalid', () => {

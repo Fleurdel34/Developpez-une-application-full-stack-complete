@@ -5,18 +5,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { UserService } from 'src/app/core/services/user.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let userService: UserService;
+  let router:Router;
 
   const mockUserService = {
     login: jest.fn().mockReturnValue(of({}))
-  };
-
-  const mockRouter = {  
-    navigate: jest.fn(),
   };
 
   const mockLoginData = {
@@ -26,8 +24,8 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoginComponent, HttpClientTestingModule, ReactiveFormsModule],
-      providers: [ { provide: UserService, useValue: mockUserService },{ provide: Router, useValue: mockRouter }]
+      imports: [LoginComponent, HttpClientTestingModule,  RouterTestingModule, ReactiveFormsModule],
+      providers: [ { provide: UserService, useValue: mockUserService }]
     })
     .overrideProvider(UserService, { useValue: mockUserService })
     .compileComponents();
@@ -35,6 +33,8 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     userService = TestBed.inject(UserService);
     component = fixture.componentInstance;
+    router= TestBed.inject(Router);
+    jest.spyOn(router, 'navigate')
     fixture.detectChanges();
   });
 
@@ -46,7 +46,7 @@ describe('LoginComponent', () => {
       component.loginForm.patchValue(mockLoginData)
       component.onSubmit();
       expect(mockUserService.login).toHaveBeenCalledWith(mockLoginData);
-      expect(mockRouter.navigate).toHaveBeenCalledWith(['/dashboard']);
+      expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
     });
 
 });

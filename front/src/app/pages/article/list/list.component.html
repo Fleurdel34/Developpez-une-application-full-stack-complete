@@ -3,7 +3,7 @@
     <button (click)="toggleSort()">Trier par</button>
 </div>
 <div>
-    @for(article of article$ | async; track article.id){
+    @for(article of articles; track article.id){
         <app-article-card [article]="article" (click)="detailArticle(article.id)"></app-article-card>
     }
 </div>

@@ -30,15 +30,12 @@ export class MeComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(data => {
         this.user = data;
-        this.user.username,
-        this.user.email,
-        this.user.id
+        this.updateForm = this.formBuilder.group({
+        username: [this.user.username, [Validators.required]],
+        email: [this.user.email, [Validators.required, Validators.email]],
+        password: [null, [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,}$/)]]
       });
-    this.updateForm = this.formBuilder.group({
-      username: [this.user.username, [Validators.required]],
-      email: [this.user.email, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,}$/)]]
-    });
+      });
     this.topicService.getAll().pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(data => {
         this.topics = data;
@@ -54,10 +51,14 @@ export class MeComponent {
     if (this.updateForm.valid) {
       this.userService.update(formValue)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-          next: () => this.router.navigate(['/dashboard']),
-          error: (error) => console.error(error)
-      });
+      .subscribe(
+        {
+        next: () => {
+          this.router.navigate(['/dashboard/article']);
+        },
+        error: (error) => console.error(error)
+      }
+      )
     }
   }
 
