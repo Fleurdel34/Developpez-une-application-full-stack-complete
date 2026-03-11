@@ -1,12 +1,15 @@
 <h1>Créer un nouvel article</h1>
 <form [formGroup]="articleForm" >
     <div>
+        <label for="topic" class="visuallyhidden">Saisir un thème</label>
         <input type="text" id="topic" formControlName="topic" placeholder="Sélectionner un thème">
     </div>
     <div>
+        <label for="title" class="visuallyhidden">Saisir un titre</label>
         <input type="text" id="title" formControlName="title" placeholder="Titre de l'article">
     </div>
     <div>
+        <label for="content" class="visuallyhidden">Saisir un contenu</label>
         <textarea id="content" formControlName="content" placeholder="Contenu de l'article"></textarea>
     </div>
     <div>
