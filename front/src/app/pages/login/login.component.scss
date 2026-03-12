@@ -39,3 +39,9 @@ form{
     font-weight: 700;
     font-size: 16px;
 }
+
+@media (max-width: 768px) {
+    a svg{
+        display:none;
+    }
+}

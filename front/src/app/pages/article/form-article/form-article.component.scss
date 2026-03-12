@@ -72,3 +72,21 @@ textarea::placeholder{
     padding: 9px 18px 10px 10px;
     margin-bottom: 41px;
 }
+
+
+@media (max-width: 768px) {
+
+   .header{
+        display:flex;
+        flex-direction:column;
+   }
+
+   a{
+        margin-left: 6rem;  
+    }
+
+    svg{
+        margin-left:3rem;
+    }
+
+}

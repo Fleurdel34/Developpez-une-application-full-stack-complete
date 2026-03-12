@@ -23,3 +23,10 @@
   border: 1px solid #000000;
 }
 
+@media (max-width: 768px) {
+  .buttonsDesign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

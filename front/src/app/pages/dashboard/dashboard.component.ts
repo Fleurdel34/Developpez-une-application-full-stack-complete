@@ -9,7 +9,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class DashboardComponent {
     private router = inject(Router);
-
+    menuOpen=false;
 
     logout() {
       this.router.navigateByUrl('');
@@ -23,5 +23,9 @@ export class DashboardComponent {
     }
     onArticlesClick() {
       this.router.navigateByUrl('/dashboard/article');
+    }
+
+    openMenu(){
+      this.menuOpen=!this.menuOpen;
     }
 }

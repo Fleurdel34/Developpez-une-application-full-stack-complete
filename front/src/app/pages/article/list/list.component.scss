@@ -29,3 +29,18 @@
     flex-wrap: wrap;
 }
 
+
+@media (max-width: 768px) {
+
+    .buttonsArticles{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    }
+
+    #buttonCreated{
+        margin-bottom:30px
+    }
+
+}
