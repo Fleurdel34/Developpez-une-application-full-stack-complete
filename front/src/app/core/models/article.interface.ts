@@ -6,9 +6,10 @@ export interface Article {
     created_at: Date;
     username: string;    
     comments:{
+        id:number
         content: string;
         created_at: Date;
         username: string;
         articleId: number;
-    }
+    }[];
 }

@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, DestroyRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { map, Observable } from 'rxjs';
 import { ArticleCardComponent } from 'src/app/components/article-card/article-card.component';
 import { Article } from 'src/app/core/models/article.interface';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { Router } from '@angular/router';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-list',
@@ -15,18 +15,23 @@ import { Router } from '@angular/router';
 export class ListComponent {
   private router = inject(Router);
   private articleService = inject(ArticleService);
+  private destroyRef = inject(DestroyRef);
   public sortAsc = true;
+  public articles: Article[] = [];
 
-  public article$: Observable<Article[]> = this.articleService.getAll().pipe(
-    map(articles =>  this.sortArticles(articles))
-  );
-
+  ngOnInit(){
+    this.articleService.getAll()
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe(res=>{
+      this.articles =  this.sortArticles(res.articles)})
+  }
+  
   public createArticle(): void {
-    this.router.navigateByUrl('/articles/form-article');
+    this.router.navigateByUrl('/dashboard/article/form-article');
   }
 
   public detailArticle(id: number): void {
-    this.router.navigateByUrl(`/articles/detail/${id}`);
+    this.router.navigateByUrl(`/dashboard/article/detail/${id}`);
   }
 
   public sortArticles(articles: Article[]): Article[] {
@@ -39,9 +44,7 @@ export class ListComponent {
 
   public toggleSort(): void {
     this.sortAsc = !this.sortAsc;
-    this.article$ = this.article$.pipe(
-      map(articles => this.sortArticles(articles))
-    );
+    this.articles = this.sortArticles(this.articles);
   }
 
 }

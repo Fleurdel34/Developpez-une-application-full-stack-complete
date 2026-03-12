@@ -16,6 +16,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -85,7 +86,7 @@ public class UserServiceImplTest {
         Mockito.when(userRepository.findByUsername("julien"))
                 .thenReturn(Optional.empty());
 
-        UnauthorizedException exception = assertThrows(UnauthorizedException.class, () -> {
+        UsernameNotFoundException exception = assertThrows(UsernameNotFoundException.class, () -> {
             this.userService.loadUserByUsername("julien");
         });
 

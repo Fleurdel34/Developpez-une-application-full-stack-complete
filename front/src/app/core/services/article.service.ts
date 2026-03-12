@@ -21,7 +21,7 @@ export class ArticleService {
     return this.http.get<Article>(`${this.pathApi}/articles/${id}`);
   }
 
-  public getAll(): Observable<Article[]> {
-    return this.http.get<Article[]>(`${this.pathApi}/articles`);
+  public getAll(): Observable<{articles:Article[]}> {
+    return this.http.get<{articles:Article[]}>(`${this.pathApi}/articles`);
   }
 }

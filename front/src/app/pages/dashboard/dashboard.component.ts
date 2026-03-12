@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
     private router = inject(Router);
-
+    menuOpen=false;
 
     logout() {
       this.router.navigateByUrl('');
@@ -23,5 +23,9 @@ export class DashboardComponent {
     }
     onArticlesClick() {
       this.router.navigateByUrl('/dashboard/article');
+    }
+
+    openMenu(){
+      this.menuOpen=!this.menuOpen;
     }
 }

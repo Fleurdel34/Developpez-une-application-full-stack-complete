@@ -13,6 +13,7 @@ import lombok.SneakyThrows;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +48,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
 
-    @SneakyThrows
+
     @Override
     public UserDetails loadUserByUsername(String login){
 
@@ -59,7 +60,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             user = userRepository.findByUsername(login);
         }
 
-        User user1 =user.orElseThrow(() -> new UnauthorizedException("error"));
+        User user1 =user.orElseThrow(() -> new UsernameNotFoundException("error"));
         return org.springframework.security.core.userdetails.User
                 .withUsername(user1.getEmail())
                 .password(user1.getPassword())

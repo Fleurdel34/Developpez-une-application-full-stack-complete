@@ -2,12 +2,14 @@ import { Component, OnInit, inject, DestroyRef } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import { RegisterService } from 'src/app/core/services/register.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { LogoHeaderComponent } from "src/app/components/logo-header/logo-header.component";
+
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule,],
+  imports: [ReactiveFormsModule, RouterModule, LogoHeaderComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -34,10 +36,8 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.registerService.register(formValue)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-          next: () => this.router.navigate(['/login']),
-          error: (error) => console.error("Error during registration:", error)
-      });
+      .subscribe();
+      this.router.navigate(['/login']);
     }
   }
 }

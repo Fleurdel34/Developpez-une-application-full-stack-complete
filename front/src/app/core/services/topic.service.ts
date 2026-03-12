@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Topic } from '../models/topic.interface';
 import { environment } from 'src/environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
@@ -13,7 +13,9 @@ export class TopicService {
   private http = inject(HttpClient);
 
   getAll(): Observable<Topic[]> {
-    return this.http.get<Topic[]>(`${this.pathApi}/topic`);
+    return this.http.get<{topics:Topic[]}>(`${this.pathApi}/topic`).pipe(
+      map(response => response.topics)
+    )
   }
 
   

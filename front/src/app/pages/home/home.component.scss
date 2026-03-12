@@ -5,3 +5,28 @@
   align-items: center;
   flex-direction: column;
 }
+
+.buttonsDesign {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.button {
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #fff;
+  width: 377px;
+  height: 40px;
+  margin: 16px;
+  border-radius: 8px;
+  border: 1px solid #000000;
+}
+
+@media (max-width: 768px) {
+  .buttonsDesign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
