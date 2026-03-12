@@ -39,9 +39,12 @@ export class MeComponent {
     this.topicService.getAll().pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(data => {
         this.topics = data;
-        if(this.topics.length > 0 && this.user) {
-          const suscribedTopics = this.topics.filter(topic => topic.subscription.user_id === this.user.id);
+        console.log(data)
+        if(this.topics.length > 0 && this.user){
+          const suscribedTopics = this.topics.filter(topic => 
+            topic.subscriptions?.some(subscription => subscription.userId === this.user.id));
           this.topics = suscribedTopics;
+          console.log(this.topics)
         }
       });
   }

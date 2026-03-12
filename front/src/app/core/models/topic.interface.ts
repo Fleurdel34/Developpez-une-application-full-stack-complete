@@ -2,8 +2,8 @@ export interface Topic {
     id: number;
     title: string;
     content: string;
-    subscription:{
-        user_id: number;
+    subscriptions:{
+        userId: number;
         created_at: Date;
-    }
+    }[];
 }

@@ -11,9 +11,9 @@ export class SubscriptionService {
 
   private http = inject(HttpClient);
 
-  subscribe(userid: number, topicId: number) {
+  subscribe(userId: number, topicId: number) {
     const params = new HttpParams()
-    .set('userId', userid)
+    .set('userId', userId)
     .set('topicId', topicId);
     return this.http.post<void>(`${this.pathApi}/subscription`, null, {params});
   }
