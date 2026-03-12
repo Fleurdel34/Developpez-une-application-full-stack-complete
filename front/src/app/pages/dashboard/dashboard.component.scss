@@ -34,6 +34,7 @@ img{
     background-color: #fff;
 }
 
+
 #logout{
     font-size: 14px;
     font-weight: 700;
@@ -48,4 +49,10 @@ svg{
     border-radius: 30px;
 }
 
+.me:focus svg circle{
+    stroke: #6C5CCF;
+}
 
+.me:focus .focus{
+    stroke: #6C5CCF;
+}

@@ -1,5 +1,7 @@
-<div>
-    <h2>{{ topic.title }}</h2>
-    <p>{{ topic.content }}</p>
-    <button (click)="subscribe()">{{ subscribed }}</button>
+<div class="topic"> 
+    <h2 class="title">{{ topic.title | titlecase}}</h2>
+    <p class="paragraph">{{ topic.content }}</p>
+    <div class="subscription-button">
+        <button (click)="subscribe()" class="button" [class.active]="subscribed === 'Déjà abonné'">{{ subscribed }}</button>
+    </div>
 </div>

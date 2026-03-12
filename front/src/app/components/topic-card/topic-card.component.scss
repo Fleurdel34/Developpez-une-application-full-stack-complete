@@ -1,0 +1,46 @@
+.topic{
+    width: 392px;
+    height: 200px;
+    border-radius: 8px;
+    background: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    padding-left:25px;
+    margin: 25px 8px 25px 20px;
+}
+
+.title{
+    width: 222px;
+    height: 26px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+
+.paragraph{
+    font-size: 14px;
+    width: 350px;
+    height: 54px;
+    padding-bottom: 2rem;
+}
+
+.subscription-button{
+    width:100%;
+    display:flex;
+    justify-content: center;
+}
+
+.button{
+    text-align: center;
+    color:#fff;
+    border-radius: 8px;
+    width: 167px;
+    height: 40px;
+    background-color: #7763C5;
+}
+
+.button.active{
+    background-color:  #939393;
+}

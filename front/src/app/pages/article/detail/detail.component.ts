@@ -1,15 +1,16 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {Article} from 'src/app/core/models/article.interface';
-import { DatePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { ArticleService } from 'src/app/core/services/article.service';
 
+
 @Component({
   selector: 'app-detail',
-  imports: [DatePipe, ReactiveFormsModule],
+  imports: [DatePipe, TitleCasePipe, ReactiveFormsModule,],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'
 })
