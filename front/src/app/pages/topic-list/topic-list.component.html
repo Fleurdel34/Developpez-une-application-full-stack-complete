@@ -1,0 +1,5 @@
+<div class="list">
+    @for(topic of topic$ | async; track topic.id){
+        <app-topic-card [topic]="topic" [userId]="user.id"></app-topic-card>
+    }
+</div>

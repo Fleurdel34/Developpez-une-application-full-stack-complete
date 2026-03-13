@@ -1,0 +1,30 @@
+<div class="title">
+    <h1>Profil utilisateur</h1>
+</div>
+@if(updateForm){
+    <form [formGroup]="updateForm" class="form">
+        <div>
+            <label for="username" class="visuallyhidden">Nom d'utilisateur</label>
+            <input type="text" id="username" formControlName="username">
+        </div>
+        <div>
+            <label for="email" class="visuallyhidden">Adresse e-mail</label>
+            <input type="email" id="email" formControlName="email">
+        </div>
+        <div>
+            <label for="password" class="visuallyhidden">Mot de passe</label>
+            <input type="password" id="password" formControlName="password" placeholder="Mot de passe">
+        </div>
+        <div class="save">
+            <button type="submit" (click)="onSubmit()" [disabled]="updateForm.invalid">Sauvegarder</button>
+        </div>
+    </form>
+}
+<div class="subscription-title">
+    <h1>Abonnements</h1>
+</div>
+<div class="list-topic">
+    @for(topic of topics; track topic.id) {
+        <app-topic-card [topic]="topic" [userId]="user.id" [isPageProfil]="true"></app-topic-card>
+    }
+</div>

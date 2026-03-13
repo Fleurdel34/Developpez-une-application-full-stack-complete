@@ -1,0 +1,36 @@
+.article{
+    width: 359px;
+    height:210px;
+    border-radius: 8px;
+    background: #F5F5F5;
+    margin: 21px 34px;
+}
+.title{
+    width: 203px;
+    height: 26px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    margin-top: 12px;
+    margin-left: 16px;
+}
+
+.author{
+    font-size: 14px;
+    height: 24px;
+    width: 274px;
+    display: flex;
+    margin-bottom: 15px;
+    margin-left: 16px;
+}
+
+.author p{
+    margin-right: 5rem;
+}
+
+.paragraph{
+    font-size: 14px;
+    width: 321px;
+    height: 87px;
+    margin: 14px 18px;
+}

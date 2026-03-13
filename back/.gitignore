@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### file .env ###
+.env
+
+###file secret key test###
+src/test/resources/application-secret.yml
