@@ -28,9 +28,11 @@ describe('TopicService', () => {
 
     service.getAll().subscribe((topics) => {
       expect(topics).toEqual(mockTopics);
-      const req = http.expectOne(`${environment.apiUrl}/topic`);
-      expect(req.request.method).toEqual('GET');
-      req.flush(mockTopics);
     });
+    const req = http.expectOne(`${environment.apiUrl}/topic`);
+    expect(req.request.method).toEqual('GET');
+    req.flush({topics: mockTopics});
   });
+
+
 });

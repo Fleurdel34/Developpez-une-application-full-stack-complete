@@ -20,12 +20,13 @@ describe('DetailComponent', () => {
     content: 'This is a test article.',
     created_at: new Date(),
     username: 'testuser',
-    comments:{
+    comments:[{
+        id:1,
         content: 'test comment',
         created_at: new Date(),
         username: 'testuser',
         articleId: 1
-    }
+    }]
   };
 
   const mockArticleService = {
@@ -71,7 +72,7 @@ it('should comment form successfully', () => {
     component.commentForm.patchValue(mockComment)
     component.onSubmit();
     expect(mockCommentService.createComment).toHaveBeenCalledWith(mockComment, 123);
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/articles']);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/article']);
   });
   
   it('should not submit form when invalid', () => {
@@ -84,7 +85,7 @@ it('should comment form successfully', () => {
 
   it('should go back successfully', () => {
     component.back();
-    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/articles');
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/dashboard/article');
   });
 
   it('should call getArticleById with route id', () => {

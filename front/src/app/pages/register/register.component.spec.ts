@@ -11,7 +11,7 @@ describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let registerService: RegisterService;
-    let router:Router;
+  let router:Router;
 
   const mockRegisterService = {
     register: jest.fn().mockReturnValue(of({}))
@@ -34,7 +34,7 @@ describe('RegisterComponent', () => {
     registerService = TestBed.inject(RegisterService);
     component = fixture.componentInstance;
     router= TestBed.inject(Router);
-    jest.spyOn(router, 'navigate')
+    jest.spyOn(router, 'navigate');
     fixture.detectChanges();
   });
 

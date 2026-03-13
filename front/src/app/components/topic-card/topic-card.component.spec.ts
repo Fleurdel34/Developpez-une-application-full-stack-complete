@@ -18,10 +18,10 @@ describe('TopicCardComponent', () => {
     id: 1,
     title: 'Test Topic',
     content: 'This is a test topic',
-    subscription: {
-      user_id: 1,
-      created_at: new Date()
-    }
+    subscriptions:[{
+        userId: 1,
+        created_at: new Date()
+    }]
   };
 
   const mockUserId = 1;  
@@ -46,6 +46,7 @@ describe('TopicCardComponent', () => {
   });
 
   it('should suscribe a user to a topic', () => {
+    component.isPageProfil= false;
     component.subscribed = "S'abonner";
     component.topic = mockTopic;
     component.userId = mockUserId;
@@ -55,7 +56,8 @@ describe('TopicCardComponent', () => {
   });
 
   it('should unsubscribe a user from a topic', () => {
-    component.subscribed = "Déjà abonné";
+    component.isPageProfil= true;
+    component.subscribed = "Se désabonner";
     component.topic = mockTopic;
     component.userId = mockUserId;
     component.subscribe();

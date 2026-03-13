@@ -25,8 +25,6 @@ ngOnInit(): void {
   }else{
     this.subscribed= "S'abonner"
   }
-
-
 }
 
 subscribe() {

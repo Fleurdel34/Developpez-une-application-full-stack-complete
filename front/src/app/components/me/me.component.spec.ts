@@ -56,7 +56,7 @@ describe('MeComponent', () => {
       component.updateForm.patchValue(mockLoginData);
       component.onSubmit();
       expect(mockUserService.update).toHaveBeenCalledWith(mockLoginData);
-      expect(mockRouter.navigate).toHaveBeenCalledWith(['/dashboard']);
+      expect(mockRouter.navigate).toHaveBeenCalledWith(['/dashboard/article']);
   });
 
   it('should get topic with subscription successfully', () => {

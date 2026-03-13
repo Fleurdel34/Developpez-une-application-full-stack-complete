@@ -42,4 +42,11 @@ describe('DashboardComponent', () => {
     component.onArticlesClick(); 
     expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/dashboard/article');
   });
+
+  it('should redirection page article successfully', () => {
+    component.menuOpen=false;
+    const mockMenuOpen=true;
+    component.openMenu(); 
+    expect(component.menuOpen).toBe(mockMenuOpen);
+  });
 });

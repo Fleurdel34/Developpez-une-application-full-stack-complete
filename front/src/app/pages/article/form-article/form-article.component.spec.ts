@@ -6,20 +6,19 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of} from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('FormArticleComponent', () => {
   let component: FormArticleComponent;
   let fixture: ComponentFixture<FormArticleComponent>;
   let articleService: ArticleService;
+  let router:Router;
 
   const mockArticleService = {
     createArticle: jest.fn().mockReturnValue(of({}))
   };
 
-  const mockRouter = {  
-    navigate: jest.fn(),
-  };
 
   const mockArticle = { 
     topic: 'Test Topic',
@@ -29,15 +28,16 @@ describe('FormArticleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormArticleComponent,HttpClientTestingModule, ReactiveFormsModule],
-      providers: [{provide: ArticleService, useValue: mockArticleService },
-      { provide: Router, useValue: mockRouter }]
+      imports: [FormArticleComponent,HttpClientTestingModule, RouterTestingModule, ReactiveFormsModule],
+      providers: [{provide: ArticleService, useValue: mockArticleService },]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(FormArticleComponent);
     articleService = TestBed.inject(ArticleService);
     component = fixture.componentInstance;
+    router= TestBed.inject(Router);
+    jest.spyOn(router, 'navigate');
     fixture.detectChanges();
   });
 
@@ -49,7 +49,7 @@ describe('FormArticleComponent', () => {
     component.articleForm.patchValue(mockArticle)
     component.onSubmit();
     expect(mockArticleService.createArticle).toHaveBeenCalledWith(mockArticle);
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/articles']);
+    expect(router.navigate).toHaveBeenCalledWith(['/article']);
   });
   
   it('should form-article not successfully form invalid', () => {

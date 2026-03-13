@@ -23,7 +23,7 @@ export class ListComponent {
     this.articleService.getAll()
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe(res=>{
-      this.articles =  this.sortArticles(res.articles)})
+    this.articles =  this.sortArticles(res.articles)})
   }
   
   public createArticle(): void {
