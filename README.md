@@ -2,7 +2,7 @@
 
 ## Front
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.20.
 
 Don't forget to install your node_modules before starting (`npm install`).
 
@@ -14,12 +14,28 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-### Where to start
+### Test
+#### Unitary test
 
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
+Launching test:
 
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
+> npm run test or npm test
 
-Note: I recommend to use material however it's not mandatory, if you prefer you can get rid of it.
+for following change:
 
-Good luck!
+> npm run test:watch
+
+For coverage:
+
+> npm test -- --coverage
+
+The report is visible in the terminal and/or in the browser.
+To view the report in the browser, open the folder "coverage/jest/Icov-report/app/index.html" at the root of the Front project, double-click the index.html file, or right-click and select "Open with Live Server" if the Live Server extension is installed.
+
+## back
+Open the folder back and read the file README.md
+
+
+
+
+
