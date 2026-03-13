@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Create class NotFoundRequestException
+ * Create class NotFoundException
  * Execute exception processing
  */
 

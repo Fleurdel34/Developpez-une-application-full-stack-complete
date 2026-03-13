@@ -45,6 +45,7 @@ public class securityConfig {
                 .authorizeHttpRequests(authorize-> {
                     authorize.requestMatchers(POST, "/api/register").permitAll();
                     authorize.requestMatchers(POST, "/api/login").permitAll();
+                    authorize.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html","/files/**").permitAll();
                     authorize.anyRequest().authenticated();
                 })
                 .exceptionHandling(exception -> exception

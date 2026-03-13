@@ -6,6 +6,11 @@ import lombok.Setter;
 
 import java.util.Date;
 
+/**
+ * Implements entity
+ * implements model subscription
+ */
+
 @Getter
 @Setter
 @Entity

@@ -4,6 +4,10 @@ import com.openclassrooms.mddapi.dto.AuthenticationDTO;
 import com.openclassrooms.mddapi.exception.BadRequestException;
 import com.openclassrooms.mddapi.exception.UnauthorizedException;
 import com.openclassrooms.mddapi.security.JwtService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+@Tag(name = "Login", description = "login management")
 @AllArgsConstructor
 @RestController
 @RequestMapping({"/api"})
@@ -29,6 +34,10 @@ public class LoginController {
 
     private final JwtService jwtService;
 
+    @Operation(summary = "login")
+    @ApiResponses({ @ApiResponse(responseCode = "201", description = "login, return JWTToken"),
+    @ApiResponse(responseCode = "400", description = "Bad request"),
+    @ApiResponse(responseCode = "401", description = "Unauthorized")})
     @SneakyThrows
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody AuthenticationDTO authenticationDTO){

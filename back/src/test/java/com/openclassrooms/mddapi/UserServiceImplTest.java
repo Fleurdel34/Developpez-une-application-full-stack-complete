@@ -2,7 +2,6 @@ package com.openclassrooms.mddapi;
 
 import com.openclassrooms.mddapi.dto.UpdateUserDTO;
 import com.openclassrooms.mddapi.exception.BadRequestException;
-import com.openclassrooms.mddapi.exception.UnauthorizedException;
 import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import com.openclassrooms.mddapi.service.Impl.UserServiceImpl;

@@ -6,6 +6,11 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * Implements entity
+ * implements model topic
+ */
+
 @Getter
 @Setter
 @Entity

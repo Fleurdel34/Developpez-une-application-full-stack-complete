@@ -7,6 +7,11 @@ import lombok.Setter;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Implements entity
+ * implements model article
+ */
+
 @Getter
 @Setter
 @Entity

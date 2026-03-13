@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Create class UnauthorizedRequestException
+ * Create class UnauthorizedException
  * Execute exception processing
  */
 

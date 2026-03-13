@@ -1,7 +1,6 @@
 package com.openclassrooms.mddapi;
 
 import com.openclassrooms.mddapi.model.Article;
-import com.openclassrooms.mddapi.model.Topic;
 import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.repository.ArticleRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
