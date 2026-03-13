@@ -34,6 +34,8 @@ export class ListComponent {
     this.router.navigateByUrl(`/dashboard/article/detail/${id}`);
   }
 
+  /* sort ascending and sort descending */
+
   public sortArticles(articles: Article[]): Article[] {
     return [...articles].sort((a, b) => {
       const dateAsc = new Date(a.created_at).getTime();

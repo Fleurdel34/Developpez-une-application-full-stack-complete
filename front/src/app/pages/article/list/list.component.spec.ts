@@ -48,7 +48,7 @@ describe('ListComponent', () => {
   ];
 
   const mockArticleService = {
-      getAll: jest.fn().mockReturnValue(of({articles:mockArticle}))
+    getAll: jest.fn().mockReturnValue(of({articles:mockArticle}))
   };
 
   beforeEach(async () => {
@@ -87,11 +87,11 @@ describe('ListComponent', () => {
   });
 
   it('should sort ascending', () => {
-  component.sortAsc = true;
-  expect(mockArticleService.getAll).toHaveBeenCalled();
-  const sortedArticles = [...mockArticle].sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
-  const result = component.sortArticles(component.articles);
-  expect(result).toEqual(sortedArticles); 
+    component.sortAsc = true;
+    expect(mockArticleService.getAll).toHaveBeenCalled();
+    const sortedArticles = [...mockArticle].sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
+    const result = component.sortArticles(component.articles);
+    expect(result).toEqual(sortedArticles); 
   });
 
   it('should sort descending', () => {

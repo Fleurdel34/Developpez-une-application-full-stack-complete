@@ -65,7 +65,7 @@ describe('TopicListComponent', () => {
     mockTopicService.getAll.mockReturnValue(of(mockTopicList.topics));
     fixture.detectChanges();
     component.topic$.subscribe(topic => {
-      expect(topic.length).toBe(2);
+    expect(topic.length).toBe(2);
     })
   });
 });

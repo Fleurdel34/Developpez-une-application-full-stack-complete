@@ -12,22 +12,24 @@ import { SubscriptionService } from 'src/app/core/services/subscription.service'
 })
 export class TopicCardComponent implements OnInit{
 
-@Input() topic!: Topic;
-@Input() userId!: number;
-@Input() isPageProfil=false;
-subscribed: String = "";
+  @Input() topic!: Topic;
+  @Input() userId!: number;
+  @Input() isPageProfil=false;
+  subscribed: String = "";
 
-private subscriptionService = inject(SubscriptionService)
+  private subscriptionService = inject(SubscriptionService)
 
-ngOnInit(): void {
-  if(this.isPageProfil){
-    this.subscribed="Se désabonner";
-  }else{
-    this.subscribed= "S'abonner"
+  ngOnInit(): void {
+    if(this.isPageProfil){
+      this.subscribed="Se désabonner";
+    }else{
+      this.subscribed= "S'abonner"
+    }
   }
-}
 
-subscribe() {
+  /* user can subscribe and unbscribe on the page viewed */
+
+  subscribe() {
     if(this.isPageProfil){
       this.subscriptionService.unsubscribe(this.userId, this.topic.id).subscribe();
       this.subscribed = "S'abonner";

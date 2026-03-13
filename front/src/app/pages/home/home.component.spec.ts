@@ -7,7 +7,7 @@ describe('HomeComponent', () => {
   let fixture: ComponentFixture<HomeComponent>;
   let router:Router;
 
-    const mockRouter = {  
+  const mockRouter = {  
     navigateByUrl: jest.fn(),
   };
 
@@ -15,7 +15,7 @@ describe('HomeComponent', () => {
     await TestBed.configureTestingModule({
     imports: [HomeComponent],
     providers: [{ provide: Router, useValue: mockRouter }]
-})
+  })
     .compileComponents();
     router =TestBed.inject(Router)
     fixture = TestBed.createComponent(HomeComponent);

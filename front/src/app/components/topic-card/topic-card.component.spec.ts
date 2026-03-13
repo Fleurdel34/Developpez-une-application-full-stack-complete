@@ -10,8 +10,8 @@ describe('TopicCardComponent', () => {
   let subscriptionService: SubscriptionService;
 
   const mockSubscriptionService = {
-      subscribe: jest.fn().mockReturnValue(of({})),
-      unsubscribe: jest.fn().mockReturnValue(of({}))
+    subscribe: jest.fn().mockReturnValue(of({})),
+    unsubscribe: jest.fn().mockReturnValue(of({}))
   };
 
   const mockTopic = {

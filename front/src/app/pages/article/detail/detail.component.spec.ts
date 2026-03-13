@@ -21,11 +21,11 @@ describe('DetailComponent', () => {
     created_at: new Date(),
     username: 'testuser',
     comments:[{
-        id:1,
-        content: 'test comment',
-        created_at: new Date(),
-        username: 'testuser',
-        articleId: 1
+      id:1,
+      content: 'test comment',
+      created_at: new Date(),
+      username: 'testuser',
+      articleId: 1
     }]
   };
 

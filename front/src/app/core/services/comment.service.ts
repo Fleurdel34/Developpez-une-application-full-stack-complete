@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class CommentService {
 
-private pathApi = environment.apiUrl;
+  private pathApi = environment.apiUrl;
 
   private http = inject(HttpClient);
 

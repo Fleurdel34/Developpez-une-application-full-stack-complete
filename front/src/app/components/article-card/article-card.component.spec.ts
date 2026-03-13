@@ -3,20 +3,20 @@ import { ArticleCardComponent } from './article-card.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 const mockArticle = {
-    id: 1,
-    topic: 'Test Topic',
-    title: 'Test Article',
-    content: 'This is a test article.',
+  id: 1,
+  topic: 'Test Topic',
+  title: 'Test Article',
+  content: 'This is a test article.',
+  created_at: new Date(),
+  username: 'testuser',
+  comments:[{
+    id:1,
+    content: 'test comment',
     created_at: new Date(),
     username: 'testuser',
-    comments:[{
-        id:1,
-        content: 'test comment',
-        created_at: new Date(),
-        username: 'testuser',
-        articleId: 1
-    }]
-  };
+    articleId: 1
+  }]
+};
 
 describe('ArticleCardComponent', () => {
   let component: ArticleCardComponent;

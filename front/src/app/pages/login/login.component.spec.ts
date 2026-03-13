@@ -47,6 +47,6 @@ describe('LoginComponent', () => {
       component.onSubmit();
       expect(mockUserService.login).toHaveBeenCalledWith(mockLoginData);
       expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
-    });
+  });
 
 });

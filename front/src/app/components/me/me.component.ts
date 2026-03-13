@@ -25,6 +25,8 @@ export class MeComponent {
   user!: User;
   topics!:Topic[];
 
+  /* user data reception with their subscription*/
+
   ngOnInit(): void {
     this.userService.getUserAuth()
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -35,7 +37,7 @@ export class MeComponent {
         email: [this.user.email, [Validators.required, Validators.email]],
         password: [null, [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,}$/)]]
       });
-      });
+    });
     this.topicService.getAll().pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(data => {
         this.topics = data;
@@ -47,13 +49,15 @@ export class MeComponent {
       });
   }
 
+  /*update data user with a form*/
+
   onSubmit(): void {
     const formValue = this.updateForm.value;
     if (this.updateForm.valid) {
       this.userService.update(formValue)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(
-        {
+      {
         next: () => {
           this.router.navigate(['/dashboard/article']);
         },

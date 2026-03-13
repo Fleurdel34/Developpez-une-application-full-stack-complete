@@ -15,30 +15,30 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 export class FormArticleComponent implements OnInit {
 
 
-    private articleService = inject(ArticleService)
-    private router = inject(Router);
-    private destroyRef = inject(DestroyRef);
-    private formBuilder = inject(FormBuilder);
+  private articleService = inject(ArticleService)
+  private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
+  private formBuilder = inject(FormBuilder);
     
-    articleForm!: FormGroup;
+  articleForm!: FormGroup;
     
   
-    ngOnInit(): void {
-      this.articleForm = this.formBuilder.group({
-        topic: [null, [Validators.required]],
-        title: [null, [Validators.required]],
-        content: [null, [Validators.required]]
-      });
-    }
+  ngOnInit(): void {
+    this.articleForm = this.formBuilder.group({
+      topic: [null, [Validators.required]],
+      title: [null, [Validators.required]],
+      content: [null, [Validators.required]]
+    });
+  }
   
-    onSubmit(): void {
-      const formValue = this.articleForm.value;
-      if (this.articleForm.valid) {
-        this.articleService.createArticle(formValue)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe();
-        this.router.navigate(['/article'])
-      }
+  onSubmit(): void {
+    const formValue = this.articleForm.value;
+    if (this.articleForm.valid) {
+      this.articleService.createArticle(formValue)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe();
+      this.router.navigate(['/article'])
     }
+  }
 
 }

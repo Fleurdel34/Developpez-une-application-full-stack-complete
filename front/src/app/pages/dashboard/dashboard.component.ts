@@ -8,24 +8,27 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-    private router = inject(Router);
-    menuOpen=false;
+  private router = inject(Router);
+  menuOpen=false;
 
-    logout() {
-      this.router.navigateByUrl('');
-      localStorage.removeItem('token');
-    }
-    onMeClick() {
-      this.router.navigateByUrl('/dashboard/me');
-    }
-    onThemesClick() {
-      this.router.navigateByUrl('/dashboard/theme');
-    }
-    onArticlesClick() {
-      this.router.navigateByUrl('/dashboard/article');
-    }
+  logout() {
+    this.router.navigateByUrl('');
+    localStorage.removeItem('token');
+  };
 
-    openMenu(){
-      this.menuOpen=!this.menuOpen;
-    }
+  onMeClick() {
+    this.router.navigateByUrl('/dashboard/me');
+  };
+
+  onThemesClick() {
+    this.router.navigateByUrl('/dashboard/theme');
+  };
+
+  onArticlesClick() {
+    this.router.navigateByUrl('/dashboard/article');
+  };
+
+  openMenu(){
+    this.menuOpen=!this.menuOpen;
+  };
 }

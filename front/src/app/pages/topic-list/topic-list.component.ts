@@ -29,7 +29,6 @@ export class TopicListComponent {
       this.user = data;
       this.user.id
     });
-
   }
 
 }

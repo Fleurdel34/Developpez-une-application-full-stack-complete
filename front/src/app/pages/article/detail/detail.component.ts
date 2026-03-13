@@ -26,6 +26,8 @@ export class DetailComponent implements OnInit{
   public commentForm!:FormGroup;
   public idArticle!: number;
 
+  /* get one article with comments and create a comment */
+
   ngOnInit(): void {
     const id= this.route.snapshot.paramMap.get('id');
     this.idArticle = parseInt(id!);
