@@ -8,6 +8,7 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-list',
+  standalone: true,
   imports: [CommonModule, ArticleCardComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'

@@ -6,6 +6,7 @@ import { SubscriptionService } from 'src/app/core/services/subscription.service'
 
 @Component({
   selector: 'app-topic-card',
+  standalone: true,
   imports: [TitleCasePipe,],
   templateUrl: './topic-card.component.html',
   styleUrl: './topic-card.component.scss'

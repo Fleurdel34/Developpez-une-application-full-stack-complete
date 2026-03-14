@@ -8,6 +8,7 @@ import { LogoHeaderComponent } from "src/app/components/logo-header/logo-header.
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [ReactiveFormsModule, RouterModule, LogoHeaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
