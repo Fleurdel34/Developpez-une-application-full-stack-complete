@@ -10,6 +10,7 @@ import { TopicCardComponent } from "../topic-card/topic-card.component";
 
 @Component({
   selector: 'app-me',
+  standalone: true,
   imports: [ReactiveFormsModule, TopicCardComponent],
   templateUrl: './me.component.html',
   styleUrl: './me.component.scss'

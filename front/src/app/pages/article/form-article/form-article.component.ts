@@ -8,6 +8,7 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-form-article',
+  standalone: true,
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './form-article.component.html',
   styleUrl: './form-article.component.scss'

@@ -10,6 +10,7 @@ import { ArticleService } from 'src/app/core/services/article.service';
 
 @Component({
   selector: 'app-detail',
+  standalone: true,
   imports: [DatePipe, TitleCasePipe, ReactiveFormsModule,],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'

@@ -10,6 +10,7 @@ import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-topic-list',
+  standalone: true,
   imports: [TopicCardComponent, CommonModule],
   templateUrl: './topic-list.component.html',
   styleUrl: './topic-list.component.scss'
